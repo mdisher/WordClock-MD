@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Matt Disher
 #ifndef WEB_PAGE_H
 #define WEB_PAGE_H
 

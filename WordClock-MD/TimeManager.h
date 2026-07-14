@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Matt Disher
 #ifndef TIME_MANAGER_H
 #define TIME_MANAGER_H
 

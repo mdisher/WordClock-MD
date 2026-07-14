@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Matt Disher
 // =====================================================================
 //  WordClock-MD  -- modernized ESP32-S3 word clock
 //  Board: ESP32-S3 SuperMini (HW-747 v0.0.2), Arduino IDE

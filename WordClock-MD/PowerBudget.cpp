@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Matt Disher
 #include "PowerBudget.h"
 
 uint32_t PowerBudget::channelSum(const uint32_t *buffer, uint16_t count)
