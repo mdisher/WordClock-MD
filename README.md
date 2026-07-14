@@ -334,8 +334,13 @@ Once it's on your network, you don't need USB again:
 - **Minor dashboard/UI tweaks** — planned polish pass.
 - **Hourly chime** — reserved setting + a hook in `Animator::start()`; wire up when ready.
 
-## Credits
+## License & credits
 
-Based on the original [johniak/word-clock](https://github.com/johniak/word-clock). The physical
-frame, serpentine layout, and English word mapping come from that project; this repo rebuilds the
-firmware for the Arduino IDE / ESP32-S3 with the features above.
+The **WordClock-MD firmware** (`WordClock-MD/`) is © 2026 Matt Disher and licensed
+**GPL-3.0-or-later** — see [`LICENSE`](LICENSE).
+
+Credit where it's due: the physical frame, serpentine layout, and English word mapping originate
+from [johniak/word-clock](https://github.com/johniak/word-clock), included **unmodified** under
+`wordclock/` for reference. That original repo carries **no license** (all rights reserved by its
+author), so this repository's GPL-3.0 covers **only** the WordClock-MD firmware, not `wordclock/`.
+Full attribution and third-party notices are in [`CREDITS.md`](CREDITS.md).
