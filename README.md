@@ -246,6 +246,19 @@ done
 
 ## Dashboard
 
+The whole UI is one self-contained, mobile-first page served straight off the device — no app, no
+cloud, no external assets (so it works even in AP setup mode with no internet).
+
+<p align="center">
+  <img src="Dashboard%20Screenshots/IMG_3584.PNG" width="300" alt="Clock tab: brightness &amp; power with live current estimate, and color mode">
+  &nbsp;&nbsp;
+  <img src="Dashboard%20Screenshots/IMG_3585.PNG" width="300" alt="Clock tab: on-the-hour animation, time zone, and the diagnostics letter-map tester">
+</p>
+
+<p align="center"><em>Clock tab — left: brightness + current budget (with the live mA estimate and
+auto-scaled effective brightness) and color mode; right: on-the-hour animation, time zone, and the
+Diagnostics letter-map tester.</em></p>
+
 - **Clock:** brightness, current budget (mA), color mode + options, on-the-hour animation (with
   *Preview*), and timezone. Sliders preview live; **Save** persists to NVS.
 - **Diagnostics:** light each word / cycle all / all-on to verify the letter map against the frame.
