@@ -15,20 +15,26 @@ Everything is **non-blocking** (millis-driven — no `delay()`, no busy-loops):
 - **Firmware current clamp**: the strip never exceeds a configurable mA budget, so it's safe on
   the external **5 V / 3 A** supply. Worst-case clock display is 31 LEDs.
 
+> See the project [`README.md`](../README.md) for the full "how it works" walkthrough, and
+> [`HARDWARE.md`](../HARDWARE.md) for the BOM + wiring.
+
 ---
 
 ## Hardware
 
 - **Board:** ESP32-S3 SuperMini (HW-747 v0.0.2)
 - **Strip:** 132 × WS2812B (74 LED/m, cut into 11 rows of 12, serpentine)
-- **Data:** GPIO1 → 330 Ω → 74AHCT125 level shifter (3.3 V→5 V) → strip DIN
+- **Data:** GPIO1 → 330 Ω → strip DIN (**direct 3.3 V — no level shifter**)
 - **Onboard status LED:** WS2812 on GPIO48 (no wiring)
 - **Power:** external 5 V / 3 A → distribution → strip (heavy) + board 5V pin (light).
-  1000 µF cap at the strip, common ground everywhere, inject 5 V/GND at both ends of the panel.
-  See the wiring diagram in the project plan.
+  ≈940 µF (2×470 µF) bulk cap at the strip, common ground everywhere, inject 5 V/GND at both ends.
+  See [`../HARDWARE.md`](../HARDWARE.md) and [`../WordClock-wiring.svg`](../WordClock-wiring.svg).
 
-> Do **not** power the board from USB-C and the 5 V supply at the same time. After the first
-> flash, update over the air (OTA) and leave USB unplugged in normal use.
+> Do **not** power the board from USB-C and the 5 V supply's board-tap at the same time. After the
+> first flash, update over the air (OTA) and leave USB unplugged in normal use.
+>
+> Mount the board with its **antenna end (opposite USB-C) in clear air** — nearby metal/wiring
+> detunes it and kills Wi-Fi.
 
 Pins/geometry live in `Pins.h`; other build constants (defaults, AP name, NTP, timeouts) in `Config.h`.
 
@@ -59,8 +65,8 @@ Pins/geometry live in `Pins.h`; other build constants (defaults, AP name, NTP, t
 1. On first boot (no saved Wi-Fi), the clock raises an open access point **`WordClock-Setup`** and
    the grid shows scattered **blue** letters (onboard LED blue).
 2. Join it with a phone; the captive portal opens automatically (or browse to `http://192.168.4.1`).
-3. **Wi-Fi** tab → *Scan* → pick your network → password → **Connect & save**. The clock reboots
-   and joins your network.
+3. **Wi-Fi** tab → *Scan* → pick your network (2.4 GHz) → password → **Connect & save**. The clock
+   reboots and joins your network.
 4. Once connected it syncs NTP (grid shows **magenta** letters until the first sync), then displays
    the time. Reach the dashboard at **`http://wordclock.local`** (or the IP shown on the chip).
 
@@ -86,6 +92,8 @@ Pins/geometry live in `Pins.h`; other build constants (defaults, AP name, NTP, t
 | Wi-Fi lost | brief red flashes over the clock | red |
 | OTA update | white chase | white (fast blink) |
 
+*(Blue means **setup mode**, not "connected" — green is the running color.)*
+
 ---
 
 ## Power / brightness notes
@@ -100,5 +108,5 @@ Defaults: brightness 64/255 (25%). Raise both only to match a larger supply.
 - Hourly **chime** is stubbed (a reserved setting + a hook in `Animator::start`); add when ready.
 - The gradient sub-modes are intentionally provisional — audition them on the real panel and we'll
   tune/prune.
-- If WS2812 data is flaky at 3.3 V over the full run, the 74AHCT125 level shifter (already in the
-  BOM) is the fix.
+- The reference build drives the strip **direct** (GPIO1 → 330 Ω → DIN, no level shifter). If a
+  *long* data run ever glitches at 3.3 V, a 74AHCT125 push-pull buffer is the optional fallback.

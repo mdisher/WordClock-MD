@@ -27,7 +27,7 @@
     <rect x="716" y="20" width="292" height="132" rx="8" class="box"/>
     <line x1="732" y1="48" x2="768" y2="48" class="p5"/>   <text x="780" y="53" class="lbl">+5 V</text>
     <line x1="732" y1="74" x2="768" y2="74" class="gnd"/>  <text x="780" y="79" class="lbl">GND (common)</text>
-    <line x1="732" y1="100" x2="768" y2="100" class="dat"/><text x="780" y="105" class="lbl">DATA (3.3 → 5 V)</text>
+    <line x1="732" y1="100" x2="768" y2="100" class="dat"/><text x="780" y="105" class="lbl">DATA (3.3 V direct)</text>
     <line x1="732" y1="116" x2="992" y2="116" stroke="#d5dbe4" stroke-width="1"/>
     <circle cx="738" cy="134" r="4" class="dotg"/>
     <text x="750" y="139" class="sm">joined · a crossing without a dot is not joined</text>
@@ -73,30 +73,16 @@
   <path class="p5"  d="M460,230 V330"/> <circle cx="460" cy="230" r="4" class="dot5"/>
   <path class="gnd" d="M600,272 V330"/> <circle cx="600" cy="272" r="4" class="dotg"/>
 
-  <!-- ================= LEVEL SHIFTER ================= -->
-  <rect x="420" y="548" width="210" height="92" rx="8" class="chip"/>
-  <text x="525" y="584" text-anchor="middle" class="lblb">74AHCT125</text>
-  <text x="525" y="604" text-anchor="middle" class="sm">optional · uses 1 of 4 channels</text>
-  <text x="525" y="624" text-anchor="middle" class="sm">1OE → GND (enable)</text>
-  <circle cx="450" cy="548" r="4" class="dotg"/> <text x="442" y="540" text-anchor="end" class="pin">GND</text>
-  <circle cx="500" cy="548" r="4" class="dotd"/> <text x="508" y="540" text-anchor="start" class="pin">1A</text>
-  <circle cx="600" cy="548" r="4" class="dot5"/> <text x="608" y="540" text-anchor="start" class="pin">VCC</text>
-  <circle cx="520" cy="640" r="4" class="dotd"/> <text x="530" y="656" text-anchor="start" class="pin">1Y</text>
+  <!-- ================= DATA: GPIO1 -> 330 Ω -> strip DIN (DIRECT, no level shifter) ================= -->
+  <path class="dat" d="M460,458 V672 H120 V732"/>
+  <rect x="447" y="492" width="26" height="22" rx="3" class="chip"/>
+  <text x="440" y="508" text-anchor="end" class="sm">330 Ω</text>
 
-  <!-- +5V -> VCC (branch clear of the board) -->
-  <path class="p5" d="M690,230 V532 H600 V548"/>
-  <circle cx="690" cy="230" r="4" class="dot5"/>
-  <!-- GND rail -> shifter GND (branch left of board) -->
-  <path class="gnd" d="M380,272 V532 H450 V548"/>
-  <circle cx="380" cy="272" r="4" class="dotg"/>
-
-  <!-- GPIO1 -> 330R -> 1A -->
-  <path class="dat" d="M460,458 V500 H500 V548"/>
-  <rect x="447" y="472" width="26" height="22" rx="3" class="chip"/>
-  <text x="440" y="488" text-anchor="end" class="sm">330 Ω</text>
-
-  <!-- 1Y -> strip DIN -->
-  <path class="dat" d="M520,640 V672 H120 V732"/>
+  <!-- optional level-shifter note (NOT used in the reference build) -->
+  <rect x="486" y="556" width="360" height="76" rx="8" class="chip" stroke-dasharray="5 4"/>
+  <text x="500" y="580" class="sm">Direct 3.3 V data drives the strip fine over a short lead —</text>
+  <text x="500" y="598" class="sm">the first WS2812 re-shapes the signal. A 74AHCT125 buffer</text>
+  <text x="500" y="616" class="sm">is an OPTIONAL fallback only for a long data run.</text>
 
   <!-- ================= LED STRIP ================= -->
   <rect x="64" y="732" width="912" height="72" rx="8" class="box"/>
@@ -120,7 +106,7 @@
   <line x1="248" y1="678" x2="248" y2="702" stroke="#1f2933" stroke-width="3"/>
   <circle cx="150" cy="690" r="4" class="dot5"/>
   <circle cx="186" cy="704" r="4" class="dotg"/>
-  <text x="262" y="694" class="sm">1000 µF</text>
+  <text x="262" y="694" class="sm">≈940 µF (2×470)</text>
 
   <!-- footer -->
   <text x="40" y="852" class="sm">★ Common ground everywhere. Never power the board from USB-C and the 5 V supply at the same time — use OTA after the first flash.</text>

@@ -158,6 +158,17 @@ belt-and-suspenders option only if you ever run a long data lead and see glitche
 
 ---
 
+## The physical frame (3D print)
+
+The clock's frame/grid is the
+[MakerWorld "Word Clock" model](https://makerworld.com/en/models/686196-word-clock).
+
+> 💡 **Print the letters in WHITE filament, not clear.** Clear/transparent letters let each LED
+> shine through as a bright **center hot-spot**; white diffuses the light evenly across the whole
+> letter face. (v1.0 was printed in clear — a white letter reprint is the one cosmetic fix left.)
+
+---
+
 ## Build & flash (Arduino IDE)
 
 1. **Boards Manager** → install **esp32 by Espressif Systems** (tested on core 3.3.10).
@@ -315,8 +326,9 @@ Once it's on your network, you don't need USB again:
 
 ## Roadmap / follow-ups
 
-- **White letter face plate** — v1.0 shipped with clear/transparent letters, which lets the LED
-  centers read a bit hot; a white letter mask evens it out. (Print swap, no code change.)
+- **Reprint the letters in white** — v1.0 was printed with clear letters, which give each LED a
+  bright center hot-spot; **white filament diffuses evenly.** Frame model:
+  [MakerWorld Word Clock](https://makerworld.com/en/models/686196-word-clock). (Print swap, no code.)
 - **Audition the gradient sub-modes** on the real panel and tune/prune (per-word static, per-word
   cycle, whole-face drift — the last one is the "does it look good?" wildcard).
 - **Minor dashboard/UI tweaks** — planned polish pass.
