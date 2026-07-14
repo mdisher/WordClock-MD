@@ -16,14 +16,14 @@ Power target: dedicated **5 V / 3 A** external supply (never runs all 132 LEDs a
 ## Wiring diagram
 
 ```
-        ┌───────────────────────────┐
+        ┌────────────────────────────┐
         │     5V ⎓ 3A  POWER SUPPLY  │   dedicated to the clock;
         │        +5V        GND      │   board USB-C = flashing/serial only
         └─────────┬──────────┬───────┘
                   │          │
              [3A–3.5A fuse]  │                  ◄ optional, on the +5V leg
                   │          │
-     ┌────────────┴──────────┴────────────┐
+     ┌────────────┴──────────┴─────────────┐
      │   DISTRIBUTION  (Wago / terminals)  │
      │       +5V rail        GND rail      │
      └──┬────────┬──────────┬────────┬─────┘
@@ -34,16 +34,17 @@ Power target: dedicated **5 V / 3 A** external supply (never runs all 132 LEDs a
         │        │          │        └───────► ESP32-S3  GND pin
         │        └──────────────────────────► ESP32-S3  5V pin  (board draws ~0.3A)
         │                   │
-        │   ┌───────────────┴───────────────┐
+        │   ┌───────────────┴────────────────┐
         │   │ ≈940µF cap across +5V / GND    │   ◄ at the strip, damps inrush
         │   │  (2×470µF ‖, or a 1000µF)      │
         │   └────────────────────────────────┘
         │
-   ┌────┴──────── WS2812B STRIP (132 LEDs = 11 rows × 12, serpentine) ────────┐
-   │  +5V ●────────────────────────────────────────────────────────────● +5V │ ◄ inject
-   │  GND ●────────────────────────────────────────────────────────────● GND │   BOTH ends
-   │  DIN ◄── data in                                              DOUT ──►    │   (even V)
-   └───────▲─────────────────────────────────────────────────────────────────┘
+   ┌────┴──────────── WS2812B STRIP  ────────────────────┐
+   │          (132 LEDs = 11 rows × 12, serpentine)      │
+   │ +5V ●─────────────────────────────────────────● +5V │ ◄ inject
+   │  ─────────────────────────────────────────────● GND │   BOTH ends
+   │  DIN ◄── data in                        DOUT ──►    │   (even V)
+   └───────▲─────────────────────────────────────────────┘
            │
         [330Ω]   inline data resistor (right at the strip DIN)
            │

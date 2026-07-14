@@ -8,6 +8,12 @@ letter template.
 It tells the time in words ("IT IS TWENTY MINUTES PAST ELEVEN"), sets itself up over a phone with a
 captive-portal web page, keeps time via NTP with automatic DST, and can be updated over the air.
 
+![WordClock-MD reading "IT IS NINE O'CLOCK" — black PLA frame with clear letters](WordClock%20Photo/WordClock_BlackPLA_ClearLetters.JPG)
+
+*The v1.0 build (black PLA frame, clear letters) reading "IT IS NINE O'CLOCK." Note the bright LED
+centers on the clear letters — [printing the letters in white](#the-physical-frame-3d-print)
+diffuses this evenly.*
+
 ---
 
 ## Project status — v1.0
