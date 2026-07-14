@@ -42,7 +42,7 @@ Power target: dedicated **5 V / 3 A** external supply (never runs all 132 LEDs a
    ┌────┴──────────── WS2812B STRIP  ────────────────────┐
    │          (132 LEDs = 11 rows × 12, serpentine)      │
    │ +5V ●─────────────────────────────────────────● +5V │ ◄ inject
-   │  ─────────────────────────────────────────────● GND │   BOTH ends
+   │ GND ●─────────────────────────────────────────● GND │   BOTH ends
    │  DIN ◄── data in                        DOUT ──►    │   (even V)
    └───────▲─────────────────────────────────────────────┘
            │
@@ -50,13 +50,13 @@ Power target: dedicated **5 V / 3 A** external supply (never runs all 132 LEDs a
            │
    ESP32-S3 GPIO1 (data out) ─── DIRECT 3.3V data, NO level shifter
 
-                                      GPIO48 = onboard status LED (no wiring needed)
+                                      [GPIO48 = onboard status LED (no wiring needed)]
 
    ★ COMMON GROUND: PSU GND = board GND = strip GND ★
+   * Injecting both ends is best practice, but I didn't need it for my clock.
 ```
 
-*(Optional: a 74AHCT125 could sit between the 330 Ω and DIN — VCC=5V, GND=common, 1OE→GND — only
-if a long data run ever misbehaves. The reference build omits it.)*
+*(Optional: a 74AHCT125 could sit between the 330 Ω and DIN — VCC=5V, GND=common, 1OE→GND — only if a long data run ever misbehaves. The reference build omits it.)*
 
 ---
 
